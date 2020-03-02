@@ -12,11 +12,10 @@ function validarRegistro(e){
         password = document.querySelector('#password').value,
         tipo = document.querySelector('#tipo').value;
 
-
-
 //https://sweetalert2.github.io/ enlace para descargar los tipos de errores
 //se valida si algun campo esta vacio, se genera el error
     if(usuario === '' || password === ''){
+        //la validacion falló
         swal({
             type: 'error',
             title: 'Error...',// se puede modificar
@@ -49,6 +48,7 @@ function validarRegistro(e){
             if(this.status === 200){
                 var respuesta = JSON.parse(xhr.responseText);//toma el string (datos)y los convierte a objetos para poder acceder a sus partes
 
+                console.log(respuesta);
                 //si la respuesta es correcta
                 if(respuesta.respuesta === 'correcto'){
                     //si es un nuevo usuario
@@ -58,6 +58,17 @@ function validarRegistro(e){
                             text: 'El usuario se creo correctamente',
                             type: 'success'
                         });
+                    } else if(respuesta.tipo === 'login'){
+                        swal({
+                            title: 'Login Correcto',
+                            text: 'Presiona OK para abrir el dashboard',
+                            type: 'success'
+                        })
+                        .then(resultado => {
+                            if(resultado.value) {
+                                window.location.href = 'index.php';//redirecciona al index
+                            }
+                        })
                     }
                 } else {
                     // Hubo un error
@@ -65,7 +76,7 @@ function validarRegistro(e){
                         title: 'Error',
                         text: 'Hubo un error',
                         type: 'error'
-                    });
+                    })
                 }
             }
         }
