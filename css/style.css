@@ -64,7 +64,7 @@ body {
     padding-left: 2rem;
 }
 .enviar {
-   justify-content: flex-end;
+   justify-content: space-between;  /*modificado   justify-content: flex-end;*/
 }
 .boton {
     background-color: #FDD835;

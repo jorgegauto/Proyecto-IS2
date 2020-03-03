@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli('localhost', 'root', 'root', 'uptask');
+$conn = new mysqli('localhost:8889', 'root', 'root', 'uptask');
 
 //Para comprobar la conexion a la base de datos
 /*
